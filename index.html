@@ -9,16 +9,92 @@
   <title>Frontend Mentor | Weather app</title>
   <link rel="stylesheet" href="/style.css">
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
+
+
+
 <body>
+  <a href="#main" class="visually-hidden skip--link"> Skip to main content </a>
+
+  <header class="header wrapper">
+    <div class="header-content">
+      <a href="/" class="header-link">
+        <img
+        src="/assets/images/logo.svg"
+        width="197"
+        height="40"
+        alt="Weather Logo"
+        />
+      </a>
+
+
+      <select class="dropdown header-dropdown" name="units" id="ddlUnits">
+        <option value="">Units</option>
+        <option value="C">&deg;C</option>
+        <option value="F">&deg;F</option>
+      </select>
+
+      <main id="main" class="main wrapper">
+        
+        <section class="hero">
+          <div class="hero-content">
+            <h1 class="hero-title"> How's the sky looking today? </h1>
+
+            <div class="hero-search">
+              <input class="hero-textbox" type="text" name="search" id="txtSearch" placeholder="Seach for this place....">
+              <button class="hero-button" id="btnSearch" type="submit">Search</button>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="current">
+          <h2 class="visually-hidden">Current Location Temperature</h2>
+
+          <div class="current-weather">
+
+            <div class="current-location">
+              <div class="current-city">Berlin, Germany</div>
+              <div class="current-date">Tuesday, Aug 5, 2025</div>
+            </div>
+
+            <div class="current-info">
+              <img 
+              src="/assets/images/icon-sunny.webp" 
+              alt="background weather dynamic"
+              width="320"
+              height="320"
+              class="current-icon"
+              >
+              <div class="current-temp"><span id="dvCurrTemp">20</span>&deg;</div>
+            </div>
+          </div>
+
+
+        </section>
+
+
+
+
+
+
+
+
+
+
+        
+      </main>
+
+
+
+    </div>
+  </header>
+
+
+  <!-- 
 
   Units
-
+  
   Switch to Imperial/Metric
 
   Temperature
@@ -42,28 +118,28 @@
   Search
 
   Feels like
-  <!-- Insert temperature here -->
+  -- Insert temperature here --
 
   Humidity
-  <!-- Insert humidity here -->
+  -- Insert humidity here --
 
   Wind
-  <!-- Insert wind here -->   
+  -- Insert wind here --   
   
   Precipitation
-  <!-- Insert precipitation here -->
+  -- Insert precipitation here --
 
   Daily forecast
-  <!-- Insert daily forecast for the next 7 days here -->
+  -- Insert daily forecast for the next 7 days here --
 
   Hourly forecast
-  <!-- Insert hourly forecast for the selected day here -->
-
+  -- Insert hourly forecast for the selected day here --
+-->
 
 
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Coded by <a href="#">Erik Nieto Reynoso</a>.
   </div>
 </body>
 </html>
