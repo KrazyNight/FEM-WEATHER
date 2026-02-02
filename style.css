@@ -1,4 +1,6 @@
-/* step 1, go to google: webfonts helper */
+/* step 1, go to google: webfonts helper 
+
+*/
 
 @layer global {
   
@@ -8,6 +10,7 @@
     font-family: 'DM Sans';
     font-style: normal;
     font-weight: 300;
+    
     src: url('/assets/fonts/dm-sans-v17-latin-300.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
   }
   /* dm-sans-500 - latin */
