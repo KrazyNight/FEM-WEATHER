@@ -18,8 +18,8 @@
     <a href="#main" class="visually-hidden skip-link"> Skip to main content </a>
     
     <header class="header wrapper">
-      <div class="header-content">
-        <a href="/" class="header-link">
+      <div class="header__content">
+        <a href="/" class="header__homelink">
           <img
           src="/assets/images/logo.svg"
           width="197"
@@ -29,7 +29,7 @@
         </a>
         
         
-        <select class="dropdown header-dropdown" name="units" id="ddlUnits">
+        <select class="dropdown header__dropdown" name="units" id="ddlUnits">
           <option value="">Units</option>
           <option value="C">&deg;C</option>
           <option value="F">&deg;F</option>
@@ -42,12 +42,12 @@
       <main id="main" class="main wrapper">
         
         <section class="hero">
-          <div class="hero-content">
-            <h1 class="hero-title"> How's the sky looking today? </h1>
+          <div class="hero__content">
+            <h1 class="hero__title"> How's the sky looking today? </h1>
 
-            <div class="hero-search">
-              <input class="hero-textbox" type="text" name="search" id="txtSearch" placeholder="Seach for this place....">
-              <button class="hero-button" id="btnSearch" type="submit">Search</button>
+            <div class="her0__search">
+              <input class="hero__textbox" type="text" name="search" id="txtSearch" placeholder="Seach for this place....">
+              <button class="hero__button" id="btnSearch" type="submit">Search</button>
             </div>
           </div>
         </section>
@@ -57,22 +57,22 @@
         <section class="current">
           <h2 class="visually-hidden">Current Location Temperature</h2>
 
-          <div class="current-weather">
+          <div class="current__weather">
 
-            <div class="current-location">
-              <div class="current-city">Berlin, Germany</div>
-              <div class="current-date">Tuesday, Aug 5, 2025</div>
+            <div class="current__location">
+              <div class="current__city">Berlin, Germany</div>
+              <div class="current__date">Tuesday, Aug 5, 2025</div>
             </div>
 
-            <div class="current-info">
+            <div class="current__info">
               <img 
               src="/assets/images/icon-sunny.webp" 
               alt="background weather dynamic"
               width="320"
               height="320"
-              class="current-icon"
+              class="current__icon"
               >
-              <div class="current-temp"><span id="dvCurrTemp">20</span>&deg;</div>
+              <div class="current__temp"><span id="dvCurrTemp">20</span>&deg;</div>
             </div>
           </div>
 
