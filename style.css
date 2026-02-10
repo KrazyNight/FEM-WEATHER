@@ -203,6 +203,9 @@ what is 10 ch
    @media (width >= calc(700 / 16 * 1rem)) {
       grid-template-columns: 1fr min(calc(100% - 48px), calc(1216 / 16 * 1rem)) 1fr;
     }
+    /* calc(100% - 48) is for tablet size
+    
+    */
 
     > * {
       grid-column: 2;
@@ -228,6 +231,25 @@ Tablet/Desktop: Content stays centered but stops growing once it hits 1216px, wh
   
   
   */
+  .visually-hidden {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+
+    &.skip-link:focus {
+      left: 0;
+      width: auto;
+      height: auto;
+      background-color: var(--color-main-bg);
+      color: var(--color-text-light);
+      padding: 10px;
+      border: 2px solid var(--color-text-light);
+    }
+  }
+
 
 
 
@@ -251,6 +273,10 @@ Tablet/Desktop: Content stays centered but stops growing once it hits 1216px, wh
     .header__homelink {
     }
 
+    /* the logo is 137 size in phone, and changes to size 197 after reaching 700px tablet size
+    
+    */
+
     .header__logo {
       width: calc(137 / 16 * 1rem);
 
@@ -267,10 +293,74 @@ Tablet/Desktop: Content stays centered but stops growing once it hits 1216px, wh
       padding: 12px 40px;
     }
   }
+
   /* 
 what is 10ch ?
 how is this a unit of measuremente
   */
+
+  .hero {
+    .hero__content {
+      display: grid;
+      justify-items: center;
+      padding-block-start: 48px;
+    }
+
+    .hero__title {
+      font-size: var(--font-size-h1);
+      margin-block-end: 48px;
+      text-align: center;
+      line-height: 1.2;
+
+      @media (width < calc(1000 / 16 * 1rem)) {
+        max-width: 15ch;
+      }
+    }
+
+    .hero__search {
+      display: grid;
+      gap: 12px 16px;
+      width: 100%;
+      max-width: calc(656 / 16 * 1rem);
+
+      @media (width >= calc(700 / 16 * 1rem)) {
+        grid-template-columns: 1fr auto;
+      }
+    }
+
+    .hero__textbox {
+      background-image: url("/assets/images/icon-search.svg");
+      background-repeat: no-repeat;
+      background-position: 24px center;
+      background-color: var(--color-panel-bg-dark);
+      font-size: var(--font-size-search);
+      padding: 16px 20px 16px 60px;
+      color: var(--color-text-med-light);
+      border-radius: 12px;
+  
+
+
+
+
+      &:focus {
+        outline: 2px solid var(--color-text-med-light);
+      }
+    }
+
+    .hero__button {
+      background-color: var(--c-blue-500);
+      border-radius: 12px;
+      font-size: var(--font-size-search);
+      color: var(--color-text-light);
+      padding: 16px 24px;
+      transition: background-color 120ms ease-in-out;
+
+      &:hover {
+        background-color: var(--color-button-bg-hover);
+        cursor: pointer;
+      }
+    }
+  }
 
 
 
