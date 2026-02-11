@@ -181,9 +181,7 @@ aound 4
 
   }
 
-  h1,
-  h2,
-  h3 {
+  h1 {
       font-family: "Bricolage Grotesque", Arial, Helvetica, sans-serif;
   }
 
@@ -250,6 +248,44 @@ Tablet/Desktop: Content stays centered but stops growing once it hits 1216px, wh
       padding: 10px;
       border: 2px solid var(--color-text-light);
     }
+  }
+
+  .main {
+    display: grid;
+    row-gap: 32px;
+  }
+
+  /* the main creates a gap of 32px in between sections, ex search bar and weather image  */
+  
+  .dashboard {
+    display: grid;
+    gap: 32px;
+    grid-template-areas:
+      "current"
+      "daily"
+      "hourly";
+
+    @media (width >= calc(1000 / 16 * 1rem)) {
+      gap: 48px 32px;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas:
+        "current current hourly"
+        "daily daily hourly";
+    }
+  }
+
+  .dropdown {
+    background-color: var(--color-panel-bg-dark);
+    color: var(--color-text-light);
+    border: 0;
+    font-size: var(--font-size-dropdown);
+    border-radius: 8px;
+  }
+
+  .block {
+    background-color: var(--color-panel-bg-dark);
+    border: 1px solid var(--color-panel-border);
+    border-radius: 12px;
   }
 
 
@@ -435,6 +471,9 @@ how is this a unit of measuremente
         grid-template-columns: repeat(4, 1fr);
       }
     }
+    /* after 700px, you will have 4 colums
+    displying feels like, humidity, wind , preciptation
+    */
 
     .current__condition {
       padding: 20px;
@@ -449,6 +488,134 @@ how is this a unit of measuremente
     .current__condition-value {
       font-size: var(--font-size-panel-value);
       font-weight: 300;
+    }
+  }
+
+
+
+
+
+
+  .daily {
+    grid-area: daily;
+
+    .daily__title {
+      font-size: var(--font-size-forecast-title);
+      margin-block-end: 20px;
+    }
+
+    .daily__forecast {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      min-height: calc(166 / 16 * 1rem);
+
+      @media (width >= calc(700 / 16 * 1rem)) {
+        grid-template-columns: repeat(7, 1fr);
+      }
+    }
+
+    .daily__day {
+      display: grid;
+      justify-items: center;
+      gap: 16px;
+      padding: 16px 10px;
+      text-align: center;
+    }
+
+    .daily__day-title {
+      font-size: var(--font-size-forecast-day);
+    }
+
+    .daily__day-icon {
+      width: 60px;
+      height: auto;
+    }
+
+    .daily__day-temps {
+      justify-self: stretch;
+      display: flex;
+      justify-content: space-between;
+      font-size: var(--font-size-forecast-temp);
+    }
+
+    .daily__day-high {
+    }
+
+    .daily__day-low {
+      color: var(--color-text-med-light);
+    }
+  }
+
+  .hourly {
+    grid-area: hourly;
+    position: relative;
+
+    .hourly__content {
+      background-color: var(--color-panel-bg-dark);
+      border-radius: 20px;
+      padding: 20px 16px;
+      max-height: 60vh;
+      overflow-y: scroll;
+
+      @media (width >= calc(1000 / 16 * 1rem)) {
+        position: absolute;
+        height: 100%;
+        max-height: none;
+      }
+    }
+
+    .hourly__header {
+      display: flex;
+      gap: 40px;
+      justify-content: space-between;
+      align-items: center;
+      margin-block-end: 16px;
+    }
+
+    .hourly__title {
+      font-size: var(--font-size-forecast-title);
+      font-weight: 600;
+    }
+
+    .hourly__select {
+      background-color: var(--color-panel-bg-med);
+      width: auto;
+      padding: 8px 16px;
+    }
+
+    .hourly__select-day {
+    }
+
+    .hourly__hours {
+      display: grid;
+      gap: 16px;
+    }
+
+    .hourly__hour {
+      display: grid;
+      grid-template-columns: auto auto 1fr;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 16px 10px 12px;
+      background-color: var(--color-panel-bg-med);
+      border: 1px solid var(--color-panel-border);
+      border-radius: 8px;
+      min-height: calc(60 / 16 * 1rem);
+    }
+
+    .hourly__hour-icon {
+      width: 40px;
+      height: auto;
+    }
+
+    .hourly__hour-time {
+      font-size: var(--font-size-forecast-hour);
+    }
+
+    .hourly__hour-temp {
+      font-size: var(--font-size-forecast-temp);
+      justify-self: end;
     }
   }
 
