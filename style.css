@@ -1,18 +1,6 @@
 /* step 1, go to google: webfonts helper 
-OKAY 
-I 
-WILL 
-FINISH 
-THIS PROJECT IN  
-6 DAYS 
-good
-we are 
-making progress
-yes we are
-=et
-what is 10 ch
-around 3
-aound 4
+
+There are 3 mistake to fix, the spacing, flix later
 
 */
 
@@ -404,6 +392,7 @@ how is this a unit of measuremente
 
 
   .current {
+    grid-area: current;
     
     .current__weather {
       display: flex;
@@ -540,6 +529,7 @@ how is this a unit of measuremente
     }
 
     .daily__day-high {
+      
     }
 
     .daily__day-low {
