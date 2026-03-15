@@ -25,3 +25,14 @@
 // thus we need another API 
 // In our search bar, we type in an address/city, and the api will auto get the 
 // address/city's "latitude" and "longitude"
+//!g site:reddit.com/r/webdev .......[ask your question]...
+
+//!g site:reddit.com/r/webdev geolocation for latitude and longitude from address 
+
+// I found  "Nominatim search"
+// now fine the API
+//   https://nominatim.openstreetmap.org/search?
+
+// search: mdn javascript get api
+// now you get a template
+
