@@ -94,7 +94,14 @@
 
 //this adds the "city" and "country" catagorys in the "console window", now its labeled, before it showd displayName
 // create a function that "loadsLocationData" 
-// Load Current Date
+// HW do this solo, good pracrice
+// Load Current Date as: Thusday, Aug 5, 2025
+// 
+
+//Now connect to UI/HTML by adding id= "..." & const dvCityCountry = document.querySelector("#dvCityCounty");
+
+
+
 
 
 
@@ -103,6 +110,11 @@
 
 
 const ddlUnits = document.querySelector("#ddlUnits");
+
+const dvCityCountry = document.querySelector("#dvCityCounty");
+const dvCurrDate = document.querySelector("#dvCurrDate");
+const dvCurrTemp = document.querySelector("#dvCurrTemp");
+
 
 
 
@@ -137,12 +149,27 @@ async function getGeoData() {
 }
 
 
-
 function loadLocationData(locationData) {
   let location = locationData[0].address;
   let cityName = location.city;
   let countryName = location.country_code.toUpperCase();
-  console.log(cityName, countryName)
+
+
+    let dateOptions = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    weekday: "long",
+  };
+
+  let currDate = new Intl.DateTimeFormat("en-US", dateOptions).format(new Date());
+
+  dvCityCountry.textContent = `${cityName}, ${countryName}`;
+  dvCurrDate.textContent = currDate;
+
+
+
+  console.log(cityName, countryName, currDate)
 
 }
 
