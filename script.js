@@ -61,6 +61,39 @@
 //connect getGeoData() and getWeatherData()
 
 
+
+
+
+
+// hw
+// step 2
+// figure out celsius to fahrenheit
+// website: https://api.open-meteo.com/v1/forecast?
+// bf celsius, now change everyting to fahrenheit, m/s, and inches 
+// API URL (Open in new tab )
+// add "&wind_speed_unit=ms&temperature_unit=fahrenheit&precipitation_unit=inch"
+// ... to the end of the url
+
+//templature_unites: fahrenheit or celsius
+//wind_speed_units = mph or kmh
+//percipitation_units = inch or mm
+
+// set the default units as celsius 
+// querySelector the id = ddlUnits, from the html
+
+
+// if (ddlUnits.value === "F") {}
+//template literals/ Embedded Expressions,  by backtick (`), ${}
+// check console: ddlUnits.value 
+
+
+
+
+const ddlUnits = document.querySelector("#ddlUnits");
+
+
+
+
 async function getGeoData() {
     let search = "los angeles, ca"
 
@@ -90,9 +123,28 @@ getGeoData();
 
 async function getWeatherData(lat, lon) {
 
+//templature_unites: fahrenheit or celsius
+//wind_speed_units = mph or kmh
+//percipitation_units = inch or mm
+//refresh
+
+// id = "ddlUnits"  => drop down list units 
+
+  let tempUnit = "celsius";
+  let windUnit = "kmh";
+  let precipUnit = "mm";
+
+  // if toggle value =  F
+
+  if (ddlUnits.value === "F") {
+    tempUnit = "fahrenheit";
+    windUnit = "mph";
+    precipUnit = "inch";
+  }
+
 
   const url = 
-  `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&current=temperature_2m,weather_code,apparent_temperature,relative_humidity_2m,wind_speed_10m,precipitation`;
+  `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&current=temperature_2m,weather_code,apparent_temperature,relative_humidity_2m,wind_speed_10m,precipitation&wind_speed_unit=${windUnit}&temperature_unit=${tempUnit}&precipitation_unit=${precipUnit}`;
   try {
     const response = await fetch(url);
     if (!response.ok) {
