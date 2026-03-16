@@ -1,3 +1,9 @@
+const ddlUnits = document.querySelector("#ddlUnits");
+
+const dvCityCountry = document.querySelector("#dvCityCountry");
+const dvCurrDate = document.querySelector("#dvCurrDate");
+const dvCurrTemp = document.querySelector("#dvCurrTemp");
+
 // STEP 1
 // set up/fetch weather and location APIs
 // https://open-meteo.com/
@@ -109,12 +115,6 @@
 
 
 
-const ddlUnits = document.querySelector("#ddlUnits");
-
-const dvCityCountry = document.querySelector("#dvCityCounty");
-const dvCurrDate = document.querySelector("#dvCurrDate");
-const dvCurrTemp = document.querySelector("#dvCurrTemp");
-
 
 
 
@@ -143,6 +143,8 @@ async function getGeoData() {
 
     loadLocationData(result);
     getWeatherData(lat, lon);
+    //console.log(dvCityCountry);
+
   } catch (error) {
     console.error(error.message);
   }
@@ -155,7 +157,7 @@ function loadLocationData(locationData) {
   let countryName = location.country_code.toUpperCase();
 
 
-    let dateOptions = {
+  let dateOptions = {
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -164,12 +166,13 @@ function loadLocationData(locationData) {
 
   let currDate = new Intl.DateTimeFormat("en-US", dateOptions).format(new Date());
 
+  
   dvCityCountry.textContent = `${cityName}, ${countryName}`;
   dvCurrDate.textContent = currDate;
-
-
-
+  
   console.log(cityName, countryName, currDate)
+
+
 
 }
 
