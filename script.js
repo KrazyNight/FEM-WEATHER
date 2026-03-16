@@ -86,6 +86,19 @@
 //template literals/ Embedded Expressions,  by backtick (`), ${}
 // check console: ddlUnits.value 
 
+// hw 
+// just add the country and the city
+// you search for it in: nominatim.openstreetmap.org/
+// addressdetails=1
+// add it to the nominatim url
+
+//this adds the "city" and "country" catagorys in the "console window", now its labeled, before it showd displayName
+// create a function that "loadsLocationData" 
+// Load Current Date
+
+
+
+
 
 
 
@@ -93,13 +106,17 @@ const ddlUnits = document.querySelector("#ddlUnits");
 
 
 
+let cityName, countryName;
+
+
+
 
 async function getGeoData() {
-    let search = "los angeles, ca"
+    let search = "los angeles, ca "
 
 
   const url = 
-  `https://nominatim.openstreetmap.org/search?q=${search}&format=jsonv2`;
+  `https://nominatim.openstreetmap.org/search?q=${search}&format=jsonv2&addressdetails=1`;
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -111,18 +128,49 @@ async function getGeoData() {
     
     let lat = result[0].lat;
     let lon = result[0].lon;
+
+    loadLocationData(result);
     getWeatherData(lat, lon);
   } catch (error) {
     console.error(error.message);
   }
 }
 
-getGeoData();
 
 
+function loadLocationData(locationData) {
+  let location = locationData[0].address;
+  let cityName = location.city;
+  let countryName = location.country_code.toUpperCase();
+  console.log(cityName, countryName)
+
+}
+
+
+
+// function loadLocationData(locationData) {
+//   let location = locationData[0].address;
+//   cityName = location.city;
+//   countryName = location.country_code.toUpperCase();
+
+//   let dateOptions = {
+//     year: "numeric",
+//     month: "short",
+//     day: "numeric",
+//     weekday: "long",
+//   };
+
+//   let currDate = new Intl.DateTimeFormat("en-US", dateOptions).format(new Date());
+
+//   //console.log(cityName, countryName, date);
+
+//   dvCityCountry.textContent = `${cityName}, ${countryName}`;
+//   dvCurrDate.textContent = currDate;
+// }
 
 async function getWeatherData(lat, lon) {
 
+//
 //templature_unites: fahrenheit or celsius
 //wind_speed_units = mph or kmh
 //percipitation_units = inch or mm
@@ -158,3 +206,10 @@ async function getWeatherData(lat, lon) {
   }
 }
 
+
+
+
+
+
+
+getGeoData();
