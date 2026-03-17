@@ -5,6 +5,7 @@ const dvCurrDate = document.querySelector("#dvCurrDate");
 const dvCurrTemp = document.querySelector("#dvCurrTemp");
 
 // STEP 1
+// yes I love this 
 // set up/fetch weather and location APIs
 // https://open-meteo.com/
 //
