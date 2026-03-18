@@ -1,8 +1,3 @@
-const ddlUnits = document.querySelector("#ddlUnits");
-
-const dvCityCountry = document.querySelector("#dvCityCountry");
-const dvCurrDate = document.querySelector("#dvCurrDate");
-const dvCurrTemp = document.querySelector("#dvCurrTemp");
 
 // STEP 1
 // yes I love this 
@@ -106,6 +101,20 @@ const dvCurrTemp = document.querySelector("#dvCurrTemp");
 // 
 
 //Now connect to UI/HTML by adding id= "..." & const dvCityCountry = document.querySelector("#dvCityCounty");
+
+//hw add function to load weather data
+
+
+
+const ddlUnits = document.querySelector("#ddlUnits");
+
+const dvCityCountry = document.querySelector("#dvCityCountry");
+const dvCurrDate = document.querySelector("#dvCurrDate");
+const dvCurrTemp = document.querySelector("#dvCurrTemp");
+const pFeelsLike = document.querySelector("#pFeelsLike");
+const pHumidity = document.querySelector("#pHumidity");
+const pWind = document.querySelector("#pWind ");
+const pPrecipitation =  document.querySelector("#pPrecipitation");
 
 
 
@@ -231,12 +240,35 @@ async function getWeatherData(lat, lon) {
     }
 
     const result = await response.json();
-    console.log(result);
+    //console.log(result);
+ 
+
+
+    loadWeatherData(result);
   } catch (error) {
     console.error(error.message);
   }
 }
 
+
+function loadWeatherData(weatherData) {
+  console.log(weatherData);
+
+  dvCurrTemp.textContent = Math.round(weatherData.current.temperature_2m);
+  pFeelsLike.textContent = Math.round(weatherData.current.apparent_temperature);
+  pHumidity.textContent = weatherData.current.relative_humidity_2m;
+  pWind.textContent = `${weatherData.current.wind_speed_10m} ${weatherData.current_units.wind_speed_10m.replace("mp/h", "mph")}`;
+  pPrecipitation.textContent = `${weatherData.current.precipitation} ${weatherData.current_units.precipitation.replace("inch", "in")}`;
+
+
+
+
+  // dvCurrTemp.textContent = Math.round(weatherData.current.temperature_2m);
+  // pFeelsLike.textContent = Math.round(weatherData.current.apparent_temperature);
+  // pHumidity.textContent = weatherData.current.relative_humidity_2m;
+  // pWind.textContent = `${weatherData.current.wind_speed_10m} ${weatherData.current_units.wind_speed_10m.replace("mp/h", "mph")}`;
+  // pPrecipitation.textContent = `${weatherData.current.precipitation} ${weatherData.current_units.precipitation.replace("inch", "in")}`;
+}
 
 
 
