@@ -107,7 +107,10 @@
 // figure out the "weather code" display image function
 // function weatherCodeName()
 
-//HW function loadDailyForecast()
+//HW function loadDailyForecast(), working with "daily"
+
+//hw work with long or short words: Wed oe wedsday 
+//5hr35min
 
 
 const ddlUnits = document.querySelector("#ddlUnits");
@@ -308,34 +311,66 @@ function getWeatherCodeName(code) {
   return weatherCodes[code];
 }
 
-function loadDailyForecast() {
+function loadDailyForecast(weatherData) {
   let daily = weatherData.daily;
 
-  for (let i = 0; i < 7; i++) {
+   for (let i = 0; i < 7; i++) {
+    // 7 is related to days of the week
     let date = new Date(daily.time[i]);
-    let dayOfWeek = new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
-    let dvForecastDay = document.querySelector(`#dvForecastDay${i + 1}`);
-    let weatherCodeName = getWeatherCodeName(daily.weather_code[i]);
-    let dailyHigh = Math.round(daily.temperature_2m_max[i]) + "°";
-    let dailyLow = Math.round(daily.temperature_2m_min[i]) + "°";
+    console.log(date)
+    // it display the date in the console
 
-    while (dvForecastDay.firstChild) {
-      dvForecastDay.removeChild(dvForecastDay.firstChild);
-    }
+  //   let dayOfWeek = new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
+  //   let dvForecastDay = document.querySelector(`#dvForecastDay${i + 1}`);
+  //   let weatherCodeName = getWeatherCodeName(daily.weather_code[i]);
+  //   let dailyHigh = Math.round(daily.temperature_2m_max[i]) + "°";
+  //   let dailyLow = Math.round(daily.temperature_2m_min[i]) + "°";
 
-    addDailyElement("p", "daily__day-title", dayOfWeek, "", dvForecastDay, "afterbegin");
-    addDailyElement("img", "daily__day-icon", "", weatherCodeName, dvForecastDay, "beforeend");
-    addDailyElement("div", "daily__day-temps", "", "", dvForecastDay, "beforeend");
+  //   while (dvForecastDay.firstChild) {
+  //     dvForecastDay.removeChild(dvForecastDay.firstChild);
+  //   }
 
-    let dvDailyTemps = document.querySelector(`#dvForecastDay${i + 1} .daily__day-temps`);
-    addDailyElement("p", "daily__day-high", dailyHigh, "", dvDailyTemps, "afterbegin");
-    addDailyElement("p", "daily__day-low", dailyLow, "", dvDailyTemps, "beforeend");
-  }
+  //   addDailyElement("p", "daily__day-title", dayOfWeek, "", dvForecastDay, "afterbegin");
+  //   addDailyElement("img", "daily__day-icon", "", weatherCodeName, dvForecastDay, "beforeend");
+  //   addDailyElement("div", "daily__day-temps", "", "", dvForecastDay, "beforeend");
+
+  //   let dvDailyTemps = document.querySelector(`#dvForecastDay${i + 1} .daily__day-temps`);
+  //   addDailyElement("p", "daily__day-high", dailyHigh, "", dvDailyTemps, "afterbegin");
+  //   addDailyElement("p", "daily__day-low", dailyLow, "", dvDailyTemps, "beforeend");
+   }
 }
 
 
 
+function populateDayOfWeek() {
+  // let currDate = new Date();
+  // let currDay;
+
+  // for (i = 0; i < 7; i++) {
+  //   currDay = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(currDate);
+  //   const newOption = document.createElement("option");
+  //   const dayOfWeek = document.createTextNode(currDay);
+
+  //   newOption.setAttribute("class", "hourly__select-day");
+  //   newOption.setAttribute("value", i);
+  //   newOption.appendChild(dayOfWeek);
+
+  //   ddlDay.insertAdjacentElement("beforeend", newOption);
+
+  //   currDate.setDate(currDate.getDate() + 1);
+  // }
+
+  // console.log(ddlDay);
+}
+
+//populateDayOfWeek();
 
 
-console.log(getWeatherCodeName())
+
+
+//console.log(getWeatherCodeName())
+//it displays the weather code image
+
+
+
 getGeoData();
