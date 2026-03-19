@@ -104,6 +104,10 @@
 
 //hw add function to load weather data
 
+// figure out the "weather code" display image function
+// function weatherCodeName()
+
+//HW function loadDailyForecast()
 
 
 const ddlUnits = document.querySelector("#ddlUnits");
@@ -245,6 +249,7 @@ async function getWeatherData(lat, lon) {
 
 
     loadWeatherData(result);
+    loadDailyForecast(result);
   } catch (error) {
     console.error(error.message);
   }
@@ -261,8 +266,6 @@ function loadWeatherData(weatherData) {
   pPrecipitation.textContent = `${weatherData.current.precipitation} ${weatherData.current_units.precipitation.replace("inch", "in")}`;
 
 
-
-
   // dvCurrTemp.textContent = Math.round(weatherData.current.temperature_2m);
   // pFeelsLike.textContent = Math.round(weatherData.current.apparent_temperature);
   // pHumidity.textContent = weatherData.current.relative_humidity_2m;
@@ -270,9 +273,69 @@ function loadWeatherData(weatherData) {
   // pPrecipitation.textContent = `${weatherData.current.precipitation} ${weatherData.current_units.precipitation.replace("inch", "in")}`;
 }
 
+function getWeatherCodeName(code) {
+  const weatherCodes = {
+    0: "sunny",
+    1: "partly-cloudy",
+    2: "partly-cloudy",
+    3: "overcast",
+    45: "fog",
+    48: "fog",
+    51: "drizzle",
+    53: "drizzle",
+    55: "drizzle",
+    56: "drizzle",
+    57: "drizzle",
+    61: "rain",
+    63: "rain",
+    65: "rain",
+    66: "rain",
+    67: "rain",
+    80: "rain",
+    81: "rain",
+    82: "rain",
+    71: "snow",
+    73: "snow",
+    75: "snow",
+    77: "snow",
+    85: "snow",
+    86: "snow",
+    95: "storm",
+    96: "storm",
+    99: "storm",
+  };
+
+  return weatherCodes[code];
+}
+
+function loadDailyForecast() {
+  let daily = weatherData.daily;
+
+  for (let i = 0; i < 7; i++) {
+    let date = new Date(daily.time[i]);
+    let dayOfWeek = new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
+    let dvForecastDay = document.querySelector(`#dvForecastDay${i + 1}`);
+    let weatherCodeName = getWeatherCodeName(daily.weather_code[i]);
+    let dailyHigh = Math.round(daily.temperature_2m_max[i]) + "°";
+    let dailyLow = Math.round(daily.temperature_2m_min[i]) + "°";
+
+    while (dvForecastDay.firstChild) {
+      dvForecastDay.removeChild(dvForecastDay.firstChild);
+    }
+
+    addDailyElement("p", "daily__day-title", dayOfWeek, "", dvForecastDay, "afterbegin");
+    addDailyElement("img", "daily__day-icon", "", weatherCodeName, dvForecastDay, "beforeend");
+    addDailyElement("div", "daily__day-temps", "", "", dvForecastDay, "beforeend");
+
+    let dvDailyTemps = document.querySelector(`#dvForecastDay${i + 1} .daily__day-temps`);
+    addDailyElement("p", "daily__day-high", dailyHigh, "", dvDailyTemps, "afterbegin");
+    addDailyElement("p", "daily__day-low", dailyLow, "", dvDailyTemps, "beforeend");
+  }
+}
 
 
 
 
 
+console.log(getWeatherCodeName())
 getGeoData();
