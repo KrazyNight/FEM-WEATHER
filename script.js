@@ -111,6 +111,9 @@
 
 //hw work with long or short words: Wed oe wedsday 
 //5hr35min
+// lets begin the text
+//yes lets begin the text
+
 
 
 const ddlUnits = document.querySelector("#ddlUnits");
