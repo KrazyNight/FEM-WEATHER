@@ -108,11 +108,9 @@
 // function weatherCodeName()
 
 //HW function loadDailyForecast(), working with "daily"
+// make all the "daily boxes dynamic": dvForecastDay, daily__day-tittle,d aiy__day-icon, daily__day-high, daily__day-low,
+// I dislike adding elements inside a script.js. 
 
-//hw work with long or short words: Wed oe wedsday 
-//5hr35min
-// lets begin the text
-//yes lets begin the text
 
 
 
@@ -121,10 +119,13 @@ const ddlUnits = document.querySelector("#ddlUnits");
 const dvCityCountry = document.querySelector("#dvCityCountry");
 const dvCurrDate = document.querySelector("#dvCurrDate");
 const dvCurrTemp = document.querySelector("#dvCurrTemp");
+
 const pFeelsLike = document.querySelector("#pFeelsLike");
 const pHumidity = document.querySelector("#pHumidity");
 const pWind = document.querySelector("#pWind ");
 const pPrecipitation =  document.querySelector("#pPrecipitation");
+
+
 
 
 
@@ -321,10 +322,16 @@ function loadDailyForecast(weatherData) {
     // 7 is related to days of the week
     let date = new Date(daily.time[i]);
     console.log(date)
-    // it display the date in the console
+    // ex: Thu Mar 19 2026 17:00:00 GMT-0700 (Pacific Daylight Time)
 
-  //   let dayOfWeek = new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
-  //   let dvForecastDay = document.querySelector(`#dvForecastDay${i + 1}`);
+     let dayOfWeek = new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
+     console.log(dayOfWeek)
+     // ex: Thu, Fri...
+
+     let dvForecastDay = document.querySelector(`#dvForecastDay${i + 1}`);
+     console.log(dvForecastDay)
+     //allows access to all the daily boxs Mon .... Sun
+
   //   let weatherCodeName = getWeatherCodeName(daily.weather_code[i]);
   //   let dailyHigh = Math.round(daily.temperature_2m_max[i]) + "°";
   //   let dailyLow = Math.round(daily.temperature_2m_min[i]) + "°";
