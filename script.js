@@ -111,6 +111,9 @@
 // make all the "daily boxes dynamic": dvForecastDay, daily__day-tittle,d aiy__day-icon, daily__day-high, daily__day-low,
 // I dislike adding elements inside a script.js. 
 
+//what is the next step?
+
+
 
 
 
@@ -332,6 +335,7 @@ function loadDailyForecast(weatherData) {
      console.log(dvForecastDay)
      //allows access to all the daily boxs Mon .... Sun
 
+
   //   let weatherCodeName = getWeatherCodeName(daily.weather_code[i]);
   //   let dailyHigh = Math.round(daily.temperature_2m_max[i]) + "°";
   //   let dailyLow = Math.round(daily.temperature_2m_min[i]) + "°";
@@ -344,6 +348,7 @@ function loadDailyForecast(weatherData) {
   //   addDailyElement("img", "daily__day-icon", "", weatherCodeName, dvForecastDay, "beforeend");
   //   addDailyElement("div", "daily__day-temps", "", "", dvForecastDay, "beforeend");
 
+
   //   let dvDailyTemps = document.querySelector(`#dvForecastDay${i + 1} .daily__day-temps`);
   //   addDailyElement("p", "daily__day-high", dailyHigh, "", dvDailyTemps, "afterbegin");
   //   addDailyElement("p", "daily__day-low", dailyLow, "", dvDailyTemps, "beforeend");
@@ -355,6 +360,7 @@ function loadDailyForecast(weatherData) {
 function populateDayOfWeek() {
   // let currDate = new Date();
   // let currDay;
+  
 
   // for (i = 0; i < 7; i++) {
   //   currDay = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(currDate);
