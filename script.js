@@ -1,6 +1,26 @@
 
 // STEP 1
 // yes I love this 
+// this
+//is
+//good
+// .
+// to 
+// bad
+// that
+// that 
+// elements 
+// are 
+// created
+// in 
+// script
+// instead
+// of 
+// index
+// talking
+// about 
+// dynamic
+
 // set up/fetch weather and location APIs
 // https://open-meteo.com/
 //
