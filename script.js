@@ -116,13 +116,13 @@
 
 //HW function loadDailyForecast(), working with "daily"
 // make all the "daily boxes dynamic": dvForecastDay, daily__day-tittle,d aiy__day-icon, daily__day-high, daily__day-low,
-// I dislike adding elements inside a script.js. 
-
-//what is the next step?
-
-
-
-
+//
+// ACCESS console: date, dayOfWeed, dvForecastDay, weaterCodeName, dailyHigh, dailyLow for each day of the week
+//
+//add elements from daily index.html into script.js, in order to make it dynamic
+//function addDailyElement(tag, className, content, weatherCodeName, parentElement, position)
+//
+// ex:  addDailyElement("p", "daily__day-title", dayOfWeek, "", dvForecastDay, "afterbegin");
 
 const ddlUnits = document.querySelector("#ddlUnits");
 
@@ -343,9 +343,14 @@ function loadDailyForecast(weatherData) {
      //allows access to all the daily boxs Mon .... Sun
 
 
-  //   let weatherCodeName = getWeatherCodeName(daily.weather_code[i]);
-  //   let dailyHigh = Math.round(daily.temperature_2m_max[i]) + "°";
-  //   let dailyLow = Math.round(daily.temperature_2m_min[i]) + "°";
+     let weatherCodeName = getWeatherCodeName(daily.weather_code[i]);
+     //console.log(weatherCodeName)
+     let dailyHigh = Math.round(daily.temperature_2m_max[i]) + "°";
+     //console.log(dailyHigh)
+     let dailyLow = Math.round(daily.temperature_2m_min[i]) + "°";
+     //console.log(dailyLow)
+
+
 
   //   while (dvForecastDay.firstChild) {
   //     dvForecastDay.removeChild(dvForecastDay.firstChild);
@@ -362,9 +367,26 @@ function loadDailyForecast(weatherData) {
    }
 }
 
+function addDailyElement(tag, className, content, weatherCodeName, parentElement, position) {
+
+  // const newElement = document.createElement(tag);
+  // newElement.setAttribute("class", className);
+  // if (content !== "") {
+  //   const newContent = document.createTextNode(content);
+  //   newElement.appendChild(newContent);
+  // }
+  // if (tag === "img") {
+  //   newElement.setAttribute("src", `/assets/images/icon-${weatherCodeName}.webp`);
+  //   newElement.setAttribute("alt", weatherCodeName);
+  //   newElement.setAttribute("width", "320");
+  //   newElement.setAttribute("height", "320");
+  // }
+  // parentElement.insertAdjacentElement(position, newElement);
+}
 
 
-function populateDayOfWeek() {
+
+//function populateDayOfWeek() {
   // let currDate = new Date();
   // let currDay;
   
@@ -384,7 +406,7 @@ function populateDayOfWeek() {
   // }
 
   // console.log(ddlDay);
-}
+//}
 
 //populateDayOfWeek();
 
