@@ -7,6 +7,15 @@
 // in 
 //dynamic
 //yes 
+//
+//
+//
+//
+//
+//
+//
+//
+// REVIEW
 
 // set up/fetch weather and location APIs
 // https://open-meteo.com/
@@ -120,9 +129,27 @@
 // ACCESS console: date, dayOfWeed, dvForecastDay, weaterCodeName, dailyHigh, dailyLow for each day of the week
 //
 //add elements from daily index.html into script.js, in order to make it dynamic
+//
 //function addDailyElement(tag, className, content, weatherCodeName, parentElement, position)
 //
-// ex:  addDailyElement("p", "daily__day-title", dayOfWeek, "", dvForecastDay, "afterbegin");
+// ex:     addDailyElement("p", "daily__day-title", dayOfWeek, "", dvForecastDay, "afterbegin");
+//
+//
+//
+// 
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+
 
 const ddlUnits = document.querySelector("#ddlUnits");
 
