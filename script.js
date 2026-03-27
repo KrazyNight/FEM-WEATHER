@@ -379,36 +379,103 @@ function loadDailyForecast(weatherData) {
 
 
 
-  //   while (dvForecastDay.firstChild) {
-  //     dvForecastDay.removeChild(dvForecastDay.firstChild);
-  //   }
+     //ex: add the daily elements
+              // <p class="daily__day-tittle">Tue</p>
+              // <img
+              //   class="daiy__day-icon"
+              //   src="assets/images/icon-rain.webp"
+              //   alt=""
+              //   width="60"
+              //   height="60"
+              // />
+              // <div class="daily__day-temps">
+              //   <p class="daily__day-high">
+              //     <span id="dvHighTemp">20</span>&deg;
+              //   </p>
+              //   <p class="daily__day-low">
+              //     <span id="dvLowTemp">10</span>&deg;
+              //   </p>
+              // </div>
 
-  //   addDailyElement("p", "daily__day-title", dayOfWeek, "", dvForecastDay, "afterbegin");
-  //   addDailyElement("img", "daily__day-icon", "", weatherCodeName, dvForecastDay, "beforeend");
-  //   addDailyElement("div", "daily__day-temps", "", "", dvForecastDay, "beforeend");
+
+    // while (dvForecastDay.firstChild) {
+    //   dvForecastDay.removeChild(dvForecastDay.firstChild);
+    // }
+    
+    //what does this code mean? 
+    // This code snippet is a common, reliable JavaScript pattern used to remove all children (child nodes) 
+    // from a DOM element (specifically, the dvForecastDay element). It clears the content of the dvForecastDay
+    // container, preparing it to hold new content, such as updating a weather forecast display
+    // /
+    // Why it works: When a child is removed, the next child immediately becomes the new firstChild.
+    // The loop continues to remove the first child until there are none left, 
+    // at which point dvForecastDay.firstChild becomes null, and the loop stops. 
 
 
-  //   let dvDailyTemps = document.querySelector(`#dvForecastDay${i + 1} .daily__day-temps`);
-  //   addDailyElement("p", "daily__day-high", dailyHigh, "", dvDailyTemps, "afterbegin");
-  //   addDailyElement("p", "daily__day-low", dailyLow, "", dvDailyTemps, "beforeend");
+    addDailyElement("p", "daily__day-tittle", dayOfWeek, dvForecastDay, "afterbegin" );
+    addDailyElement("img", "daiy__day-icon", "", weatherCodeName, dvForecastDay, "beforeend");
+    addDailyElement("div", "daily__day-temps", "", "", dvForecastDay, "beforeend");
+
+    let dvDailyTemps = document.querySelector(`#dvForecastDay${i + 1} .daily__day-temps`);
+    //still accessing each day of the week, but focusing on .daily__day-temps
+    addDailyElement("p", "daily__day-high", dailyHigh, "", dvDailyTemps, "afterbegin");
+    addDailyElement("p", "daily__day-low", dailyLow, "", dvDailyTemps, "beforeend");
+
+    //
+    //  while (dvForecastDay.firstChild) {
+    //    dvForecastDay.removeChild(dvForecastDay.firstChild);
+    //  }
+    
+    // please explaine this code?
+
+    //  addDailyElement("p", "daily__day-title", dayOfWeek, "", dvForecastDay, "afterbegin");
+    //  addDailyElement("img", "daily__day-icon", "", weatherCodeName, dvForecastDay, "beforeend");
+    //  addDailyElement("div", "daily__day-temps", "", "", dvForecastDay, "beforeend");
+
+
+    //  let dvDailyTemps = document.querySelector(`#dvForecastDay${i + 1} .daily__day-temps`);
+    //  addDailyElement("p", "daily__day-high", dailyHigh, "", dvDailyTemps, "afterbegin");
+    //  addDailyElement("p", "daily__day-low", dailyLow, "", dvDailyTemps, "beforeend");
+
+
    }
 }
 
+
 function addDailyElement(tag, className, content, weatherCodeName, parentElement, position) {
 
-  // const newElement = document.createElement(tag);
-  // newElement.setAttribute("class", className);
-  // if (content !== "") {
-  //   const newContent = document.createTextNode(content);
-  //   newElement.appendChild(newContent);
-  // }
-  // if (tag === "img") {
-  //   newElement.setAttribute("src", `/assets/images/icon-${weatherCodeName}.webp`);
-  //   newElement.setAttribute("alt", weatherCodeName);
-  //   newElement.setAttribute("width", "320");
-  //   newElement.setAttribute("height", "320");
-  // }
-  // parentElement.insertAdjacentElement(position, newElement);
+  const newElement = document.createElement(tag);
+  newElement.setAttribute("class", className);
+
+  if (content !== "") {
+    const newContent = document.createTextNode(content);
+    newElement.appendChild(newContent);
+  }
+
+  //explain: 
+  // checks if a variable named "content" is not an empty string, and if so, 
+  // creates a text node containing that content and appends it to another element named newElement. 
+  //
+  //if (content !== ""): 
+  // This is a conditional statement that evaluates whether the content 
+  // variable has any value other than an empty string ("").
+  //
+  //const newContent = document.createTextNode(content);: 
+  // If the condition is true, this line uses the document.createTextNode() method
+  //  to create a new DOM text node using the value stored in the content variable.
+  //
+  //newElement.appendChild(newContent);
+  // This line then appends the newly created newContent text node 
+  // as a child of the newElement object, effectively adding the text into the newElement. 
+
+  if (tag === "img") {
+    newElement.setAttribute("src", `/assets/images/icon-${weatherCodeName}.webp`);
+    newElement.setAttribute("alt", weatherCodeName);
+    newElement.setAttribute("width", "320");
+    newElement.setAttribute("height", "320");
+  }
+  
+  //parentElement.insertAdjacentElement(position, newElement);
 }
 
 
