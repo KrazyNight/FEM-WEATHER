@@ -478,7 +478,7 @@ function addDailyElement(tag, className, content, weatherCodeName, parentElement
   //parentElement.insertAdjacentElement(position, newElement);
 }
 
-
+//yes 
 
 //function populateDayOfWeek() {
   // let currDate = new Date();
