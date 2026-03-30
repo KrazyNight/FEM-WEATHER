@@ -8,14 +8,22 @@
 //dynamic
 //yes 
 //
+//i 
+//am
+//studying
 //
-//
-//
-//
-//
-//
+//review soon
+//yup
 //
 // REVIEW
+//review
+
+
+
+
+
+
+
 
 // set up/fetch weather and location APIs
 // https://open-meteo.com/
