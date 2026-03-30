@@ -17,6 +17,7 @@
 //
 // REVIEW
 //review
+// 6hrs 
 
 
 
@@ -385,6 +386,19 @@ function loadDailyForecast(weatherData) {
      let dailyLow = Math.round(daily.temperature_2m_min[i]) + "°";
      //console.log(dailyLow)
 
+  
+// dynamic work here : create function addDailyElement(tag, className, content, weatherCodeName, parentElement, position)
+//      const newDayOfWeek = document.createElement("p");
+//      newDayOfWeek.setAttribute("class", "daily__day-title");
+//      const newContent = document.createTextNode(dayOfWeek);    
+//      newDayOfWeek.appendChild(newContent);
+//      dvForecastDay.insertAdjacentElement("afterbegin", newDayOfWeek)
+//      --- understand insertAdjacentElement("afterbegin", newDayOfWeek)
+
+// dynamic work here
+
+
+
 
 
      //ex: add the daily elements
@@ -409,6 +423,8 @@ function loadDailyForecast(weatherData) {
     // while (dvForecastDay.firstChild) {
     //   dvForecastDay.removeChild(dvForecastDay.firstChild);
     // }
+
+
     
     //what does this code mean? 
     // This code snippet is a common, reliable JavaScript pattern used to remove all children (child nodes) 
@@ -420,7 +436,14 @@ function loadDailyForecast(weatherData) {
     // at which point dvForecastDay.firstChild becomes null, and the loop stops. 
 
 
-    addDailyElement("p", "daily__day-tittle", dayOfWeek, dvForecastDay, "afterbegin" );
+
+
+
+
+//keep
+
+
+    addDailyElement("p", "daily__day-tittle", dayOfWeek, "", dvForecastDay, "afterbegin" );
     addDailyElement("img", "daiy__day-icon", "", weatherCodeName, dvForecastDay, "beforeend");
     addDailyElement("div", "daily__day-temps", "", "", dvForecastDay, "beforeend");
 
@@ -428,6 +451,12 @@ function loadDailyForecast(weatherData) {
     //still accessing each day of the week, but focusing on .daily__day-temps
     addDailyElement("p", "daily__day-high", dailyHigh, "", dvDailyTemps, "afterbegin");
     addDailyElement("p", "daily__day-low", dailyLow, "", dvDailyTemps, "beforeend");
+
+//leep
+
+
+
+
 
     //
     //  while (dvForecastDay.firstChild) {
@@ -451,14 +480,26 @@ function loadDailyForecast(weatherData) {
 
 
 function addDailyElement(tag, className, content, weatherCodeName, parentElement, position) {
+  //tag is another name for element. ex: <p><div>...
+  //
+  //copy and paste
+    //  const newDayOfWeek = document.createElement("p");
+    //  newDayOfWeek.setAttribute("class", "daily__day-title")
+    //  const newContent = document.createTextNode(dayOfWeek);
+    //  newDayOfWeek.appendChild(newContent);
+    //  dvForecastDay.insertAdjacentElement("afterbegin", newDayOfWeek) ---------------> parentElement.insertAdjacentElement(position, newElement);
+    //
 
   const newElement = document.createElement(tag);
   newElement.setAttribute("class", className);
 
-  if (content !== "") {
-    const newContent = document.createTextNode(content);
-    newElement.appendChild(newContent);
-  }
+  // if (content !== "") {
+  //   const newContent = document.createTextNode(content);
+  //   newElement.appendChild(newContent);
+  // }
+
+  const newContent = document.createTextNode(content);
+  newElement.appendChild(newContent);
 
   //explain: 
   // checks if a variable named "content" is not an empty string, and if so, 
@@ -479,38 +520,38 @@ function addDailyElement(tag, className, content, weatherCodeName, parentElement
   if (tag === "img") {
     newElement.setAttribute("src", `/assets/images/icon-${weatherCodeName}.webp`);
     newElement.setAttribute("alt", weatherCodeName);
-    newElement.setAttribute("width", "320");
-    newElement.setAttribute("height", "320");
+    newElement.setAttribute("width", "60");
+    newElement.setAttribute("height", "60");
   }
   
-  //parentElement.insertAdjacentElement(position, newElement);
+  parentElement.insertAdjacentElement(position, newElement);
 }
 
-//yes 
 
-//function populateDayOfWeek() {
-  // let currDate = new Date();
-  // let currDay;
+
+// function populateDayOfWeek() {
+//   let currDate = new Date();
+//   let currDay;
   
 
-  // for (i = 0; i < 7; i++) {
-  //   currDay = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(currDate);
-  //   const newOption = document.createElement("option");
-  //   const dayOfWeek = document.createTextNode(currDay);
+//   for (i = 0; i < 7; i++) {
+//     currDay = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(currDate);
+//     const newOption = document.createElement("option");
+//     const dayOfWeek = document.createTextNode(currDay);
 
-  //   newOption.setAttribute("class", "hourly__select-day");
-  //   newOption.setAttribute("value", i);
-  //   newOption.appendChild(dayOfWeek);
+//     newOption.setAttribute("class", "hourly__select-day");
+//     newOption.setAttribute("value", i);
+//     newOption.appendChild(dayOfWeek);
 
-  //   ddlDay.insertAdjacentElement("beforeend", newOption);
+//     ddlDay.insertAdjacentElement("beforeend", newOption);
 
-  //   currDate.setDate(currDate.getDate() + 1);
-  // }
+//     currDate.setDate(currDate.getDate() + 1);
+//   }
 
-  // console.log(ddlDay);
-//}
+//   console.log(ddlDay);
+// }
 
-//populateDayOfWeek();
+// populateDayOfWeek();
 
 
 
