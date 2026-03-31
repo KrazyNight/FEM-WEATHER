@@ -18,6 +18,21 @@
 // REVIEW
 //review
 // 6hrs 
+// hello 
+// yes 
+// what 
+// are 
+// i 
+// am 
+// you 
+// who 
+// are 
+// you 
+// no tortella
+// no quesadias 
+// half of vetagables 
+// half month of fruit 
+
 
 
 
