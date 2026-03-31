@@ -6,32 +6,16 @@
 // work
 // in 
 //dynamic
-//yes 
-//
-//i 
-//am
-//studying
-//
-//review soon
-//yup
-//
-// REVIEW
-//review
-// 6hrs 
-// hello 
-// yes 
-// what 
-// are 
-// i 
-// am 
-// you 
-// who 
-// are 
-// you 
+// 8hr06mins
+
 // no tortella
 // no quesadias 
 // half of vetagables 
 // half month of fruit 
+// notes of daily food 
+// daily measure weight 
+// change gym
+
 
 
 
@@ -160,12 +144,19 @@
 //
 //
 //
+// hw: function loadHourlyForecast()
 // 
-//
-//
-//
+// for each of thr 7 days, need to retrieve the 23 hrs
+// Day 1, Hours: 0-23 -- i = 0
+// Day 2, Hours: 24-47 -- i = 1
+// Day 3, Hours: 48-71 -- i = 2
+// Day 4, Hours: 72-95 -- i = 3
+// Day 5, Hours: 96-119 -- i = 4
+// Day 6, Hours: 120-143 -- i = 5
+// Day 7, Hours: 144-167 -- i = 6
 //
 
+//     loadHourlyForecast(result); inside async function getWeatherData(lat, lon)
 
 
 
@@ -318,6 +309,8 @@ async function getWeatherData(lat, lon) {
 
     loadWeatherData(result);
     loadDailyForecast(result);
+    loadHourlyForecast(result);
+
   } catch (error) {
     console.error(error.message);
   }
@@ -541,6 +534,145 @@ function addDailyElement(tag, className, content, weatherCodeName, parentElement
   
   parentElement.insertAdjacentElement(position, newElement);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function loadHourlyForecast() {
+  //
+  // for each of thr 7 days, need to retrieve the 23 hrs
+  // Day 1, Hours: 0-23 -- i = 0
+  // Day 2, Hours: 24-47 -- i = 1
+  // Day 3, Hours: 48-71 -- i = 2
+  // Day 4, Hours: 72-95 -- i = 3
+  // Day 5, Hours: 96-119 -- i = 4
+  // Day 6, Hours: 120-143 -- i = 5
+  // Day 7, Hours: 144-167 -- i = 6
+
+  // let firstHour = 24 * i;
+  // let lastHour = 24 * (i + 1) - 1;
+  //
+
+
+  console.log("loadHourlyForecast()");
+  let dayIndex = parseInt(ddlDay.value, 10);
+
+  console.log(`Day ${dayIndex + 1}`);
+  let firstHour = 24 * dayIndex;
+  let lastHour = 24 * (dayIndex + 1) - 1;
+  let weatherCodes = weatherData.hourly.weather_code;
+  let temps = weatherData.hourly.temperature_2m;
+  let hours = weatherData.hourly.time;
+  let id = 1;
+
+  for (let h = firstHour; h <= lastHour; h++) {
+    // console.log(`hour = ${h}`);
+    let weatherCodeName = getWeatherCodeName(weatherCodes[h]);
+    let temp = Math.round(temps[h]) + "°";
+    let hour = new Date(hours[h]).toLocaleString("en-US", { hour: "numeric", hour12: true });
+    let dvForecastHour = document.querySelector(`#dvForecastHour${id}`);
+
+    while (dvForecastHour.firstChild) {
+      dvForecastHour.removeChild(dvForecastHour.firstChild);
+    }
+
+    // console.log(hour, weatherCodeName, temp);
+
+    // console.log(`#dvForecastHour${id}`);
+    addDailyElement("img", "hourly__hour-icon", "", weatherCodeName, dvForecastHour, "afterbegin");
+    addDailyElement("p", "hourly__hour-time", hour, "", dvForecastHour, "beforeend");
+    addDailyElement("p", "hourly__hour-temp", temp, "", dvForecastHour, "beforeend");
+
+    id++;
+  }
+}
+
+
+
+
+
+// function addHourlyElement(tag, className, content, weatherCodeName, parentElement, position) {
+//   const newElement = document.createElement(tag);
+//   newElement.setAttribute("class", className);
+//   if (content !== "") {
+//     const newContent = document.createTextNode(content);
+//     newElement.appendChild(newContent);
+//   }
+//   if (tag === "img") {
+//     newElement.setAttribute("src", `/assets/images/icon-${weatherCodeName}.webp`);
+//     newElement.setAttribute("alt", weatherCodeName);
+//     newElement.setAttribute("width", "320");
+//     newElement.setAttribute("height", "320");
+//   }
+//   parentElement.insertAdjacentElement(position, newElement);
+// }
+
+// function loadHourlyForecast() {
+//   console.log("loadHourlyForecast()");
+//   let dayIndex = parseInt(ddlDay.value, 10);
+
+//   console.log(`Day ${dayIndex + 1}`);
+//   let firstHour = 24 * dayIndex;
+//   let lastHour = 24 * (dayIndex + 1) - 1;
+//   let weatherCodes = weatherData.hourly.weather_code;
+//   let temps = weatherData.hourly.temperature_2m;
+//   let hours = weatherData.hourly.time;
+//   let id = 1;
+
+//   for (let h = firstHour; h <= lastHour; h++) {
+//     // console.log(`hour = ${h}`);
+//     let weatherCodeName = getWeatherCodeName(weatherCodes[h]);
+//     let temp = Math.round(temps[h]) + "°";
+//     let hour = new Date(hours[h]).toLocaleString("en-US", { hour: "numeric", hour12: true });
+//     let dvForecastHour = document.querySelector(`#dvForecastHour${id}`);
+
+//     while (dvForecastHour.firstChild) {
+//       dvForecastHour.removeChild(dvForecastHour.firstChild);
+//     }
+
+//     // console.log(hour, weatherCodeName, temp);
+
+//     // console.log(`#dvForecastHour${id}`);
+//     addDailyElement("img", "hourly__hour-icon", "", weatherCodeName, dvForecastHour, "afterbegin");
+//     addDailyElement("p", "hourly__hour-time", hour, "", dvForecastHour, "beforeend");
+//     addDailyElement("p", "hourly__hour-temp", temp, "", dvForecastHour, "beforeend");
+
+//     id++;
+//   }
+// }
+
+
+
+
+
+
+
+// function getHours() {
+//   for (let h = 0; h <= 23; h++) {
+//     console.log(h);
+//   }
+// }
+
+
+
+
+
+
+
+
+
 
 
 
