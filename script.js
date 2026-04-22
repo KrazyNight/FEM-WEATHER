@@ -379,7 +379,7 @@ function loadDailyForecast(weatherData) {
      // ex: Thu, Fri...
 
      let dvForecastDay = document.querySelector(`#dvForecastDay${i + 1}`);
-     console.log(dvForecastDay)
+     //console.log(dvForecastDay)
      //allows access to all the daily boxs Mon .... Sun
 
 
@@ -497,13 +497,13 @@ function addDailyElement(tag, className, content, weatherCodeName, parentElement
   const newElement = document.createElement(tag);
   newElement.setAttribute("class", className);
 
-  // if (content !== "") {
-  //   const newContent = document.createTextNode(content);
-  //   newElement.appendChild(newContent);
-  // }
+  if (content !== "") {
+    const newContent = document.createTextNode(content);
+    newElement.appendChild(newContent);
+  }
 
-  const newContent = document.createTextNode(content);
-  newElement.appendChild(newContent);
+  // const newContent = document.createTextNode(content);
+  // newElement.appendChild(newContent);
 
   //explain: 
   // checks if a variable named "content" is not an empty string, and if so, 
@@ -534,6 +534,7 @@ function addDailyElement(tag, className, content, weatherCodeName, parentElement
 
 
 
+// 
 
 
 
@@ -545,8 +546,8 @@ function addDailyElement(tag, className, content, weatherCodeName, parentElement
 
 
 
-
-function loadHourlyForecast() {
+function loadHourlyForecast(weatherData, dayIndex = 0) {
+  
   //
   // for each of thr 7 days, need to retrieve the 23 hrs
   // Day 1, Hours: 0-23 -- i = 0
@@ -561,9 +562,10 @@ function loadHourlyForecast() {
   // let lastHour = 24 * (i + 1) - 1;
   //
 
+//8hr32mins
+  //console.log(loadHourlyForecast());
 
-  console.log("loadHourlyForecast()");
-  let dayIndex = parseInt(ddlDay.value, 10);
+  //let dayIndex = parseInt(ddlDay.value, 10);
 
   console.log(`Day ${dayIndex + 1}`);
   let firstHour = 24 * dayIndex;
@@ -573,16 +575,23 @@ function loadHourlyForecast() {
   let hours = weatherData.hourly.time;
   let id = 1;
 
-  for (let h = firstHour; h <= lastHour; h++) {
+  for (let h = firstHour; h < lastHour; h++) {
     // console.log(`hour = ${h}`);
     let weatherCodeName = getWeatherCodeName(weatherCodes[h]);
     let temp = Math.round(temps[h]) + "°";
     let hour = new Date(hours[h]).toLocaleString("en-US", { hour: "numeric", hour12: true });
-    let dvForecastHour = document.querySelector(`#dvForecastHour${id}`);
 
-    while (dvForecastHour.firstChild) {
-      dvForecastHour.removeChild(dvForecastHour.firstChild);
-    }
+    //.toLocaleString("en-US", { hour: "numeric", hour12: true })
+    // i want javascript fomat datetime hours am pm
+    // 12AM
+
+    let dvForecastHour = document.querySelector(`#dvForecastHour${h + 1}`);
+    console.log(dvForecastHour)
+    // above applies to img, time, and temp in forecastHour
+
+    // while (dvForecastHour.firstChild) {
+    //   dvForecastHour.removeChild(dvForecastHour.firstChild);
+    // }
 
     // console.log(hour, weatherCodeName, temp);
 
@@ -591,13 +600,38 @@ function loadHourlyForecast() {
     addDailyElement("p", "hourly__hour-time", hour, "", dvForecastHour, "beforeend");
     addDailyElement("p", "hourly__hour-temp", temp, "", dvForecastHour, "beforeend");
 
-    id++;
+    //id++;
   }
 }
 
 
 
+function getHours() {
+  for (let h = 0; h <= 23; h++) {
+    console.log(h);
+  }
+}
 
+function addHourlyElement(tag, className, content, weatherCodeName, parentElement, position) {
+  const newElement = document.createElement(tag);
+  newElement.setAttribute("class", className);
+
+  if (content !== "") {
+    const newContent = document.createTextNode(content);
+    newElement.appendChild(newContent);
+  }
+
+
+
+  if (tag === "img") {
+    newElement.setAttribute("src", `/assets/images/icon-${weatherCodeName}.webp`);
+    newElement.setAttribute("alt", weatherCodeName);
+    newElement.setAttribute("width", "60");
+    newElement.setAttribute("height", "60");
+  }
+  
+  parentElement.insertAdjacentElement(position, newElement);
+}
 
 // function addHourlyElement(tag, className, content, weatherCodeName, parentElement, position) {
 //   const newElement = document.createElement(tag);
@@ -614,6 +648,13 @@ function loadHourlyForecast() {
 //   }
 //   parentElement.insertAdjacentElement(position, newElement);
 // }
+
+
+
+
+
+
+
 
 // function loadHourlyForecast() {
 //   console.log("loadHourlyForecast()");
