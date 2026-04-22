@@ -6,12 +6,12 @@
 // work
 // in 
 //dynamic
-// 8hr06mins
+// 8hr33mins
 
 // last step
 // work on dynamic 
 // hourly forecast
-
+// 
 
 
 
@@ -562,7 +562,7 @@ function loadHourlyForecast(weatherData, dayIndex = 0) {
   // let lastHour = 24 * (i + 1) - 1;
   //
 
-//8hr32mins
+
   //console.log(loadHourlyForecast());
 
   //let dayIndex = parseInt(ddlDay.value, 10);
@@ -584,9 +584,10 @@ function loadHourlyForecast(weatherData, dayIndex = 0) {
     //.toLocaleString("en-US", { hour: "numeric", hour12: true })
     // i want javascript fomat datetime hours am pm
     // 12AM
+    //
 
     let dvForecastHour = document.querySelector(`#dvForecastHour${h + 1}`);
-    console.log(dvForecastHour)
+   
     // above applies to img, time, and temp in forecastHour
 
     // while (dvForecastHour.firstChild) {
