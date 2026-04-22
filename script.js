@@ -8,13 +8,9 @@
 //dynamic
 // 8hr06mins
 
-// no tortella
-// no quesadias 
-// half of vetagables 
-// half month of fruit 
-// notes of daily food 
-// daily measure weight 
-// change gym
+// last step
+// work on dynamic 
+// hourly forecast
 
 
 
