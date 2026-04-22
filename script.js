@@ -154,6 +154,12 @@
 
 //     loadHourlyForecast(result); inside async function getWeatherData(lat, lon)
 
+//creating dynamic and adding elements on ForecastHourly
+//function populateDayOfWeek
+
+//8hr 38 mins ---- 9hr 00mins to understand how to add Mon, tue, wen, thur, fri, sat, sun dynamicly 
+
+//9hrs 40mins
 
 
 
@@ -163,6 +169,9 @@
 
 
 const ddlUnits = document.querySelector("#ddlUnits");
+const ddlDay =  document.querySelector("#ddlDay");
+const btnSearch = document.querySelector("#btnSearch");
+const txtSearch = document.querySelector("#txtSearch");
 
 const dvCityCountry = document.querySelector("#dvCityCountry");
 const dvCurrDate = document.querySelector("#dvCurrDate");
@@ -187,13 +196,13 @@ const pPrecipitation =  document.querySelector("#pPrecipitation");
 
 
 
-let cityName, countryName;
+let cityName, countryName, weatherData;
 
 
 
 
 async function getGeoData() {
-    let search = "los angeles, ca "
+    let search = txtSearch.value;
 
 
   const url = 
@@ -298,14 +307,14 @@ async function getWeatherData(lat, lon) {
       throw new Error(`Response status: ${response.status}`);
     }
 
-    const result = await response.json();
-    //console.log(result);
+    weatherData = await response.json();
+    console.log(weatherData);
  
 
 
-    loadWeatherData(result);
-    loadDailyForecast(result);
-    loadHourlyForecast(result);
+    loadWeatherData(weatherData);
+    loadDailyForecast(weatherData);
+    loadHourlyForecast(weatherData);
 
   } catch (error) {
     console.error(error.message);
@@ -313,7 +322,7 @@ async function getWeatherData(lat, lon) {
 }
 
 
-function loadWeatherData(weatherData) {
+function loadWeatherData() {
   console.log(weatherData);
 
   dvCurrTemp.textContent = Math.round(weatherData.current.temperature_2m);
@@ -365,7 +374,7 @@ function getWeatherCodeName(code) {
   return weatherCodes[code];
 }
 
-function loadDailyForecast(weatherData) {
+function loadDailyForecast() {
   let daily = weatherData.daily;
 
    for (let i = 0; i < 7; i++) {
@@ -445,6 +454,11 @@ function loadDailyForecast(weatherData) {
 
 
 //keep
+
+
+    while (dvForecastDay.firstChild) {
+      dvForecastDay.removeChild(dvForecastDay.firstChild);
+    }
 
 
     addDailyElement("p", "daily__day-tittle", dayOfWeek, "", dvForecastDay, "afterbegin" );
@@ -546,7 +560,7 @@ function addDailyElement(tag, className, content, weatherCodeName, parentElement
 
 
 
-function loadHourlyForecast(weatherData, dayIndex = 0) {
+function loadHourlyForecast( ) {
   
   //
   // for each of thr 7 days, need to retrieve the 23 hrs
@@ -565,7 +579,7 @@ function loadHourlyForecast(weatherData, dayIndex = 0) {
 
   //console.log(loadHourlyForecast());
 
-  //let dayIndex = parseInt(ddlDay.value, 10);
+  let dayIndex = parseInt(ddlDay.value, 10);
 
   console.log(`Day ${dayIndex + 1}`);
   let firstHour = 24 * dayIndex;
@@ -575,7 +589,7 @@ function loadHourlyForecast(weatherData, dayIndex = 0) {
   let hours = weatherData.hourly.time;
   let id = 1;
 
-  for (let h = firstHour; h < lastHour; h++) {
+  for (let h = firstHour; h <= lastHour; h++) {
     // console.log(`hour = ${h}`);
     let weatherCodeName = getWeatherCodeName(weatherCodes[h]);
     let temp = Math.round(temps[h]) + "°";
@@ -586,13 +600,14 @@ function loadHourlyForecast(weatherData, dayIndex = 0) {
     // 12AM
     //
 
-    let dvForecastHour = document.querySelector(`#dvForecastHour${h + 1}`);
+    let dvForecastHour = document.querySelector(`#dvForecastHour${id}`);
    
     // above applies to img, time, and temp in forecastHour
 
-    // while (dvForecastHour.firstChild) {
-    //   dvForecastHour.removeChild(dvForecastHour.firstChild);
-    // }
+    while (dvForecastHour.firstChild) {
+      dvForecastHour.removeChild(dvForecastHour.firstChild);
+    }
+    // above is to elimate the prvious image of the weather in forecastHourly 
 
     // console.log(hour, weatherCodeName, temp);
 
@@ -601,7 +616,7 @@ function loadHourlyForecast(weatherData, dayIndex = 0) {
     addDailyElement("p", "hourly__hour-time", hour, "", dvForecastHour, "beforeend");
     addDailyElement("p", "hourly__hour-temp", temp, "", dvForecastHour, "beforeend");
 
-    //id++;
+    id++;
   }
 }
 
@@ -714,36 +729,35 @@ function addHourlyElement(tag, className, content, weatherCodeName, parentElemen
 
 
 
-// function populateDayOfWeek() {
-//   let currDate = new Date();
-//   let currDay;
+function populateDayOfWeek() {
+  let currDate = new Date();
+  let currDay;
   
 
-//   for (i = 0; i < 7; i++) {
-//     currDay = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(currDate);
-//     const newOption = document.createElement("option");
-//     const dayOfWeek = document.createTextNode(currDay);
+  for (i = 0; i < 7; i++) {
+    currDay = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(currDate);
+    // used to be 
+    //let currDate = new Intl.DateTimeFormat("en-US", dateOptions).format(new Date());
+    //dateOptions changed to  { weekday: "long" }
+    const newOption = document.createElement("option");
+    const dayOfWeek = document.createTextNode(currDay);
 
-//     newOption.setAttribute("class", "hourly__select-day");
-//     newOption.setAttribute("value", i);
-//     newOption.appendChild(dayOfWeek);
+    newOption.setAttribute("class", "hourly__select-day");
+    newOption.setAttribute("value", i);
+    newOption.appendChild(dayOfWeek);
 
-//     ddlDay.insertAdjacentElement("beforeend", newOption);
+    ddlDay.insertAdjacentElement("beforeend", newOption);
 
-//     currDate.setDate(currDate.getDate() + 1);
-//   }
+    currDate.setDate(currDate.getDate() + 1);
+  }
 
-//   console.log(ddlDay);
-// }
+  console.log(ddlDay);
+}
 
-// populateDayOfWeek();
-
-
-
-
-//console.log(getWeatherCodeName())
-//it displays the weather code image
+populateDayOfWeek();
+//getGeoData();
 
 
-
-getGeoData();
+btnSearch.addEventListener("click", getGeoData);
+ddlUnits.addEventListener("change", getGeoData);
+ddlDay.addEventListener("change", loadHourlyForecast);
