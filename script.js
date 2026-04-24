@@ -1,25 +1,8 @@
 
 // STEP 1
-// let
-//let
-// new
-// work
-// in 
-//dynamic
+
+//dynamic review
 // 8hr33mins
-
-// last step
-// work on dynamic 
-// hourly forecast
-// 
-
-
-
-
-
-
-
-
 
 // set up/fetch weather and location APIs
 // https://open-meteo.com/
